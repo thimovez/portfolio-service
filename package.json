@@ -1,0 +1,42 @@
+{
+  "name": "comment-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon --inspect=0.0.0.0 index.js",
+    "debug": "node --inspect=0.0.0.0:9229 ./index.js",
+    "migrate": "npx sequelize-cli db:migrate --url postgres://postgres:root@localhost:5432/portfolioservice",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo --url postgres://postgres:root@localhost:5432/portfolioservice"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thimovez/comment-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thimovez/comment-service/issues"
+  },
+  "homepage": "https://github.com/thimovez/comment-service#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.10.0",
+    "sequelize": "^6.30.0",
+    "swagger-ui-express": "^4.6.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "nodemon": "^2.0.21",
+    "sequelize-cli": "^6.6.0"
+  }
+}
