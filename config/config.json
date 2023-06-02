@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "root",
+    "database": "portfolioservice",
+    "host": "db",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "portfolioservice_test",
+    "host": "db",
+    "dialect": "postgres",
+    "logging": true
+  },
+  "production": {
+    "username": "postgres",
+    "password": "root",
+    "database": "portfolioservice_test",
+    "host": "db",
+    "dialect": "postgres",
+    "logging": false
+  }
+}
