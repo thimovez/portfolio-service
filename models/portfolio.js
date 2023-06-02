@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Portfolio.belongsTo(models.User);
+      Portfolio.hasMany(models.Image, { foreignKey: 'portfolioId' });
     }
   }
   Portfolio.init({
