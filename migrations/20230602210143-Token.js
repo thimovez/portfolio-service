@@ -13,14 +13,6 @@ module.exports = {
       refreshToken: {
         type: Sequelize.STRING(260)
       },
-      userId: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
