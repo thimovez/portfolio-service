@@ -19,11 +19,30 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     id: {
       type: DataTypes.STRING,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
     },
-    firsName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    firsName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    }
   }, {
     sequelize,
     tableName: 'users',
