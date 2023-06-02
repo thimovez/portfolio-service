@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.Token, { foreignKey: 'userId' });
-      User.hasMany(models.Portfolio, { foreignKey: 'UserId' });
+      User.hasOne(models.Token);
+      User.hasMany(models.Portfolio);
     }
   }
   User.init({
@@ -44,8 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    tableName: 'users',
-    modelName: 'User',
+    tableName: 'users'
   });
   return User;
 };

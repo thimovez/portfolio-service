@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Portfolio.belongsTo(models.User);
-      Portfolio.hasMany(models.Image, { foreignKey: 'portfolioId' });
+      Portfolio.hasMany(models.Image);
     }
   }
   Portfolio.init({
@@ -35,8 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    tableName: 'portfolios',
-    modelName: 'Portfolio',
+    tableName: 'portfolios'
   });
   return Portfolio;
 };
