@@ -24,14 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     refreshToken: {
       type: DataTypes.STRING(260)
     },
-    userId: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      references: {
-        model: 'users',
-        key: 'id'
-      }
-    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
@@ -42,8 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    tableName: 'tokens',
-    modelName: 'Token',
+    tableName: 'tokens'
   });
   return Token;
 };
