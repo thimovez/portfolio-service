@@ -94,6 +94,15 @@ class UserService {
     };
   }
 
+  async delete(id, refreshToken) {
+    const tokenData = tokenService.removeToken(refreshToken);
+    const userData = await User.destroy({ where: { id } });
+
+    return {
+      tokenData,
+      userData
+    };
+  }
 }
 
 module.exports = new UserService();

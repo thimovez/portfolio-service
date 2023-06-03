@@ -61,6 +61,19 @@ class UserController {
     }
   }
 
+  async delete(req, res, next) {
+    try {
+      const refreshToken = req.cookies.refreshToken;
+      const { id } = req.user;
+
+      const result = await userService.delete(id, refreshToken);
+
+      return res.json(result);
+    } catch (e) {
+      next(e);
+    }
+  }
+
 }
 
 module.exports = new UserController();
