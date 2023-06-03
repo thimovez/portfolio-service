@@ -6,7 +6,7 @@ class PortfolioController {
     try {
       const name = req.body.name;
       const descr = req.body.description || '';
-      const image = req.body.images || '';
+      const image = req.file || '';
       const { id } = req.user;
 
       const p = await portfolioService.createPortfolio(name, descr, image, id);
