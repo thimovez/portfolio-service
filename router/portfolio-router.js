@@ -10,6 +10,7 @@ router.post('/', auth, upload.array('images', 2),
   portfolioController.createPortfolio);
 router.post('/:id', auth, upload.array('images', 2),
   portfolioController.UploadImagesByID);
+router.delete('/:id', auth, portfolioController.DeletePortfolio);
 
 
 module.exports = router;
