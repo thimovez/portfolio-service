@@ -1,17 +1,17 @@
 'use strict';
 const portfolioService = require('../service/portfolio-service');
 
-
 class PortfolioController {
-  async createPortfolio(res, req, next) {
+  async createPortfolio(req, res, next) {
     try {
-      const name = req.params.name;
-      const description = req.params.description || '';
-      const image = req.params.images || '';
+      const name = req.body.name;
+      const descr = req.body.description || '';
+      const image = req.body.images || '';
+      const { id } = req.user;
 
-      const p = await portfolioService.createPortfolio(name, description, image);
+      const p = await portfolioService.createPortfolio(name, descr, image, id);
 
-      res.json(p);
+      return res.json(p);
     } catch (e) {
       next(e);
     }
