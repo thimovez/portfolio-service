@@ -4,12 +4,10 @@ const portfolioService = require('../service/portfolio-service');
 class PortfolioController {
   async createPortfolio(req, res, next) {
     try {
-      const name = req.body.name;
-      const descr = req.body.description || '';
-      const image = req.file || '';
       const { id } = req.user;
+      const images = req.files || '';
 
-      const p = await portfolioService.createPortfolio(name, descr, image, id);
+      const p = await portfolioService.createPortfolio(id, images, req.body);
 
       return res.json(p);
     } catch (e) {
