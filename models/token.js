@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Token.belongsTo(models.User);
+      Token.belongsTo(models.User, { onDelete: 'CASCADE' });
     }
   }
   Token.init({

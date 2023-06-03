@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Image.belongsTo(models.Portfolio);
+      Image.belongsTo(models.Portfolio, { onDelete: 'CASCADE' });
     }
   }
   Image.init({
