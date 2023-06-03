@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     comments: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    path: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     sequelize,
