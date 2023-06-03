@@ -29,6 +29,18 @@ class PortfolioController {
       next(e);
     }
   }
+
+  async DeletePortfolio(req, res, next) {
+    try {
+      const id = req.params.id;
+
+      const deleteResult = await portfolioService.DeletePortfolio(id);
+
+      return res.json(deleteResult);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new PortfolioController();
