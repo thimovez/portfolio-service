@@ -4,6 +4,6 @@ const portfolioController = require('../controllers/portfolio-controller');
 const auth = require('../middleware/auth-middleware');
 const router = new Router();
 
-router.get('/', auth, portfolioController.createPortfolio);
+router.post('/', auth, portfolioController.createPortfolio);
 
 module.exports = router;
