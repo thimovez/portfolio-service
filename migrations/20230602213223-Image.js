@@ -21,6 +21,10 @@ module.exports = {
       comments: {
         type: Sequelize.STRING,
         allowNull: true
+      },
+      path: {
+        type: Sequelize.STRING,
+        allowNull: false
       }
     });
   },
