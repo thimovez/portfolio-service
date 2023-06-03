@@ -95,7 +95,6 @@ class UserService {
   }
 
   async delete(id) {
-    // const tokenData = await tokenService.removeToken(refreshToken);
     const userData = await User.destroy({ where: { id } });
 
     return {
