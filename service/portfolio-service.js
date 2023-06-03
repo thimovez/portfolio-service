@@ -3,13 +3,13 @@ const ApiError = require('../exceptions/api.error');
 const { Portfolio } = require('../models');
 
 class PortfolioService {
-  async createPortfolio(name, description, image) {
+  async createPortfolio(name, descr, image, id) {
     if (typeof name === 'undefined') {
-      throw new ApiError.BadRequest('field name cannot be empty');
+      throw ApiError.BadRequest('field name cannot be empty');
     }
 
     const portfolioData = await Portfolio.create({
-      name, description, images: image
+      name, description: descr, images: image, UserId: id
     });
 
     return portfolioData;
