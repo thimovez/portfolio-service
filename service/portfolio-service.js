@@ -50,6 +50,16 @@ class PortfolioService {
 
     return imagesData;
   }
+
+  async DeletePortfolio(id) {
+    if (typeof id === 'undefined') {
+      throw ApiError.BadRequest('missed portfolio id');
+    }
+
+    const portfoioData = await Portfolio.destroy({ where: { id } });
+
+    return portfoioData;
+  }
 }
 
 module.exports = new PortfolioService();
