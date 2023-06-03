@@ -20,17 +20,24 @@ class PortfolioService {
       name, description, UserId: id
     });
 
+    const imagesData = {};
+
     for (let i = 0; i < images.length; i++) {
-      await Image.create({
+      const image = await Image.create({
         name: imgname,
         description: imgdescr,
         comments: imgcomment,
         PortfolioId: portfolioData.id,
         path: images[i].path
       });
+
+      imagesData[i] = image;
     }
 
-    return portfolioData;
+    return {
+      portfolioData,
+      imagesData
+    };
   }
 }
 
