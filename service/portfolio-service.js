@@ -102,6 +102,19 @@ class PortfolioService {
 
     return imageData;
   }
+
+  async GetImage() {
+    const image = await Portfolio.findAll({
+      order: [['createdAt', 'DESC']],
+      include: [
+        {
+          model: Image
+        }
+      ]
+    });
+
+    return image;
+  }
 }
 
 module.exports = new PortfolioService();
