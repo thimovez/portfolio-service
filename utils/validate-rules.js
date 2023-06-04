@@ -8,22 +8,22 @@ const regUserRules = [
   }).withMessage('Name must be at least 5 characters long and string'),
 
   // Email must be valid
-  body('email').isEmail().withMessage('Invalid email'),
+  body('email').isEmail().notEmpty().withMessage('Invalid email'),
 
   // Password must be at least 8 characters long
   body('password').isLength({
     min: 8
-  }).withMessage('Password must be at least 6 characters long'),
+  }).notEmpty().withMessage('Password must be at least 8 characters long'),
 ];
 
 const loginUserRules = [
   // Email must be valid
-  body('email').isEmail().withMessage('Invalid email'),
+  body('email').isEmail().notEmpty().withMessage('Invalid email'),
 
   // Password must be at least 8 characters long
   body('password').isLength({
     min: 8
-  }).withMessage('Password must be at least 6 characters long'),
+  }).notEmpty().withMessage('Password must be at least 8 characters long'),
 ];
 
 const logoutUserRules = [
