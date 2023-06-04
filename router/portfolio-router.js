@@ -11,6 +11,7 @@ router.post('/', auth, upload.array('images', 2),
 router.post('/:id', auth, upload.array('images', 2),
   portfolioController.UploadImagesByID);
 router.delete('/:id', auth, portfolioController.DeletePortfolio);
+router.delete('/image/id', auth, portfolioController.DeleteImage);
 
 
 module.exports = router;
