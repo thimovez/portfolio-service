@@ -18,10 +18,6 @@ module.exports = class ApiError extends Error {
     return new ApiError(403, 'Forbidden');
   }
 
-  static MethodNotAllowed() {
-    return new ApiError(404, 'Not Found');
-  }
-
   static BadRequest(message, errors = []) {
     return new ApiError(400, message, errors);
   }
