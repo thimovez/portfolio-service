@@ -22,14 +22,28 @@ class PortfolioService {
     };
   }
 
-  async UploadImagesByID(id, images, args) {
+  async UploadImagesByID(id, images, user, args) {
     if (typeof id === 'undefined') {
       throw ApiError.BadRequest('missed portfoio id');
     }
 
-    const imagesData = this.UploadImages(id, images, args);
+    const verifyUser = await Portfolio.findOne({
+      where: {
+        id,
+        UserId: user.id
+      }
+    });
 
-    return imagesData;
+    if (!verifyUser) {
+      throw ApiError.ForbiddenError('forbidden');
+    }
+
+    const imagesData = await this.UploadImages(id, images, args);
+
+    return {
+      imagesData,
+      verifyUser
+    };
   }
 
   async UploadImages(id, images, args) {

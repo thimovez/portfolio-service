@@ -18,11 +18,12 @@ class PortfolioController {
 
   async UploadImagesByID(req, res, next) {
     try {
+      const user = req.user;
       const id = req.params.id;
       const images = req.files || '';
       const args = req.body;
 
-      const imgData = await portfolioService.UploadImagesByID(id, images, args);
+      const imgData = await portfolioService.UploadImagesByID(id, images, user, args);
 
       return res.json(imgData);
     } catch (e) {
