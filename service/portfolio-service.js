@@ -82,6 +82,26 @@ class PortfolioService {
 
     return verifyUser;
   }
+
+  async DeleteImage(id, user) {
+    if (typeof id === 'undefined') {
+      throw ApiError.BadRequest('missed image id');
+    }
+
+    const image = await Image.findOne({
+      where: { id }
+    });
+
+    if (!image.PortfolioId) {
+      throw ApiError.BadRequest('image does not exist');
+    }
+
+    await this.VerifyUserPortfolio(image.PortfolioId, user.id);
+
+    const imageData = await Image.destroy({ where: { id } });
+
+    return imageData;
+  }
 }
 
 module.exports = new PortfolioService();
