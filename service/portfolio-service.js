@@ -27,16 +27,7 @@ class PortfolioService {
       throw ApiError.BadRequest('missed portfoio id');
     }
 
-    const verifyUser = await Portfolio.findOne({
-      where: {
-        id,
-        UserId: user.id
-      }
-    });
-
-    if (!verifyUser) {
-      throw ApiError.ForbiddenError('forbidden');
-    }
+    const verifyUser = await this.VerifyUserPortfolio(id, user.id);
 
     const imagesData = await this.UploadImages(id, images, args);
 
@@ -65,14 +56,31 @@ class PortfolioService {
     return imagesData;
   }
 
-  async DeletePortfolio(id) {
+  async DeletePortfolio(id, user) {
     if (typeof id === 'undefined') {
       throw ApiError.BadRequest('missed portfolio id');
     }
 
+    await this.VerifyUserPortfolio(id, user.id);
+
     const portfoioData = await Portfolio.destroy({ where: { id } });
 
     return portfoioData;
+  }
+
+  async VerifyUserPortfolio(id, userId) {
+    const verifyUser = await Portfolio.findOne({
+      where: {
+        id,
+        UserId: userId
+      }
+    });
+
+    if (!verifyUser) {
+      throw ApiError.ForbiddenError('forbidden');
+    }
+
+    return verifyUser;
   }
 }
 

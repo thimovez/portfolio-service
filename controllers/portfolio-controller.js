@@ -33,9 +33,10 @@ class PortfolioController {
 
   async DeletePortfolio(req, res, next) {
     try {
+      const user = req.user;
       const id = req.params.id;
 
-      const deleteResult = await portfolioService.DeletePortfolio(id);
+      const deleteResult = await portfolioService.DeletePortfolio(id, user);
 
       return res.json(deleteResult);
     } catch (e) {
