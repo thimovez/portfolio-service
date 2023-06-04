@@ -6,6 +6,7 @@ const auth = require('../middleware/auth-middleware');
 const router = new Router();
 const upload = multer({ dest: 'uploads/' });
 
+router.get('/', portfolioController.GetImage);
 router.post('/', auth, upload.array('images', 2),
   portfolioController.createPortfolio);
 router.post('/:id', auth, upload.array('images', 2),
