@@ -1,37 +1,64 @@
 'use strict';
-const { body, cookie } = require('express-validator');
+const { check } = require('express-validator');
 
 const regUserRules = [
-  // Name must be provided
-  body('name').isString().notEmpty().isLength({
-    min: 5
-  }).withMessage('Name must be at least 5 characters long and string'),
+  check('name')
+    .notEmpty().withMessage('name cannot be empty')
+    .isString().withMessage('name should be string only')
+    .isLength({
+      min: 5,
+      max: 12
+    }).withMessage('Name must be at least 5 characters long and string'),
 
-  // Email must be valid
-  body('email').isEmail().notEmpty().withMessage('Invalid email'),
+  check('email').isEmail().withMessage('must be in email format')
+    .notEmpty().withMessage('field email cannot be empty'),
 
-  // Password must be at least 8 characters long
-  body('password').isLength({
-    min: 8
-  }).notEmpty().withMessage('Password must be at least 8 characters long'),
+  check('password').isLength({
+    min: 8,
+    max: 20
+  }).withMessage('Password must be at least 8 characters long and maximum 20')
+    .notEmpty().withMessage('Password cannot be empty'),
 ];
 
 const loginUserRules = [
-  // Email must be valid
-  body('email').isEmail().notEmpty().withMessage('Invalid email'),
+  check('email').isEmail().withMessage('must be in email format')
+    .notEmpty().withMessage('field email cannot be empty'),
 
-  // Password must be at least 8 characters long
-  body('password').isLength({
-    min: 8
-  }).notEmpty().withMessage('Password must be at least 8 characters long'),
+  check('password').isLength({
+    min: 8,
+    max: 20
+  }).withMessage('Password must be at least 8 characters long and maximum 20')
+    .notEmpty().withMessage('Password cannot be empty'),
 ];
 
-const logoutUserRules = [
-  cookie('refreshToken').isString().notEmpty()
+const portfolioRules = [
+  check('name')
+    .notEmpty().withMessage('name cannot be empty')
+    .isString().withMessage('name should be string only')
+    .isLength({
+      min: 5,
+      max: 12
+    }).withMessage('Name must be at least 5 characters long and string')
+];
+
+const uploadRules = [
+  check('id').exists().withMessage('id is required')
+    .notEmpty().withMessage('id cannot be empty')
+    .isNumeric().withMessage('must be number'),
+  check('name').isString().withMessage('name should be string only')
+    .notEmpty().withMessage('name cannot be empty')
+];
+
+const deleteRules = [
+  check('id').exists().withMessage('id is required')
+    .notEmpty().withMessage('id cannot be empty')
+    .isNumeric().withMessage('must be number'),
 ];
 
 module.exports = {
   regUserRules,
   loginUserRules,
-  logoutUserRules
+  portfolioRules,
+  uploadRules,
+  deleteRules
 };
