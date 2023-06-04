@@ -43,6 +43,19 @@ class PortfolioController {
       next(e);
     }
   }
+
+  async DeleteImage(req, res, next) {
+    try {
+      const user = req.user;
+      const id = req.params.id;
+
+      const deleteResult = await portfolioService.DeleteImage(id, user);
+
+      res.json(deleteResult);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new PortfolioController();
