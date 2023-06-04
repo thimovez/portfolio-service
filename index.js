@@ -16,6 +16,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/api', router);
 app.use(errorMiddleware);
+app.use((req, res, next) => {
+  res.status(404).send('Nor Found');
+});
 
 const start = async () => {
   try {
