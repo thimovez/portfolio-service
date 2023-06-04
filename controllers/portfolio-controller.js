@@ -56,6 +56,16 @@ class PortfolioController {
       next(e);
     }
   }
+
+  async GetImage(req, res, next) {
+    try {
+      const image = await portfolioService.GetImage();
+
+      res.json(image);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new PortfolioController();
