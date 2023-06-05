@@ -1,21 +1,8 @@
 'use strict';
 require('dotenv').config();
-const express = require('express');
-const cookieParser = require('cookie-parser');
 const { sequelize } = require('./models');
-const router = require('./router/index');
-const errorMiddleware = require('./middleware/error-middleware');
-
+const app = require('./middleware/index');
 const PORT = process.env.PORT || 5000;
-const app = express();
-
-app.use(express.json());
-app.use(cookieParser());
-app.use('/api', router);
-app.use(errorMiddleware);
-app.use((req, res, next) => {
-  res.status(404).send('Nor Found');
-});
 
 const start = async () => {
   try {
