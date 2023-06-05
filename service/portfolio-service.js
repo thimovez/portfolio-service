@@ -4,7 +4,7 @@ const { Portfolio, Image } = require('../models');
 
 class PortfolioService {
   async createPortfolio(id, images, args) {
-    const { name, description = '' } = args;
+    const { name, description } = args;
 
     if (typeof name === 'undefined') {
       throw ApiError.BadRequest('field name cannot be empty');
@@ -38,7 +38,7 @@ class PortfolioService {
   }
 
   async UploadImages(id, images, args) {
-    const { imgname = '', imgdescr = '', imgcomment = '' } = args;
+    const { imgname, imgdescr, imgcomment } = args;
     const imagesData = {};
 
     for (let i = 0; i < images.length; i++) {

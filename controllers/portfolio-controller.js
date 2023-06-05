@@ -6,7 +6,13 @@ class PortfolioController {
     try {
       const { id } = req.user;
       const images = req.files || '';
-      const args = req.body;
+      const args = {
+        name: req.body.name,
+        description: req.body.description || '',
+        imgname: req.body.imgname || '',
+        imgdescr: req.body.imgdescr || '',
+        imgcomment: req.body.imgcomment || ''
+      }
 
       const p = await portfolioService.createPortfolio(id, images, args);
 
@@ -21,7 +27,11 @@ class PortfolioController {
       const user = req.user;
       const id = req.params.id;
       const images = req.files || '';
-      const args = req.body;
+      const args = {
+        imgname: req.body.imgname || '',
+        imgdescr: req.body.imgdescr || '',
+        imgcomment: req.body.imgcomment || ''
+      }
 
       const imgData = await portfolioService.UploadImagesByID(id, images, user, args);
 
