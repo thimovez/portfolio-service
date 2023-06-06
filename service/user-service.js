@@ -5,6 +5,7 @@ const tokenService = require('./token-service');
 const { User } = require('../models');
 const UserDto = require('../dtos/user-dto');
 const ApiError = require('../exceptions/api.error');
+const { sequelize } = require('../models');
 
 class UserService {
   async registration(name, email, password) {
@@ -15,10 +16,16 @@ class UserService {
 
     const id = uuidv4();
     const hashPassword = await bcrypt.hash(password, 3);
+    const userData = await sequelize.transaction(async t => {
+      const userData = await User.create({
+        id, firsName: name, email, password: hashPassword
+      }, {
+        returning: ['id', 'firsName', 'email', 'createdAt' ],
+        transaction: t
+      });
 
-    const userData = await User.create({
-      id, firsName: name, email, password: hashPassword
-    }, { returning: ['id', 'firsName', 'email', 'createdAt' ] });
+      return userData;
+    });
     const userDto = new UserDto(userData);
 
     const tokens = tokenService.generateTokens({ ...userDto });
