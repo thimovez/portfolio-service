@@ -1,4 +1,4 @@
-'use strict';
+
 const Router = require('express');
 const userController = require('../controllers/user-controller');
 const auth = require('../middleware/auth-middleware');

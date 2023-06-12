@@ -1,4 +1,4 @@
-'use strict';
+
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const tokenService = require('./token-service');

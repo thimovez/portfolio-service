@@ -1,4 +1,4 @@
-'use strict';
+
 const { check } = require('express-validator');
 
 const regUserRules = [

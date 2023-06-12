@@ -1,4 +1,4 @@
-'use strict';
+
 const Router = require('express');
 const multer  = require('multer');
 const portfolioController = require('../controllers/portfolio-controller');
