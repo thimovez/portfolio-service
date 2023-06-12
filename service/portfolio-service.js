@@ -105,10 +105,10 @@ class PortfolioService {
 
   async GetImage() {
     const image = await Portfolio.findAll({
-      order: [['createdAt', 'DESC']],
       include: [
         {
-          model: Image
+          model: Image,
+          order: [['createdAt', 'DESC']]
         }
       ]
     });
